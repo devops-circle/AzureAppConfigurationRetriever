@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureAppConfigurationRetriever", "AzureAppConfigurationRetriever\AzureAppConfigurationRetriever.csproj", "{6F28FCF8-7FB2-4058-A60F-E2E554124F4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureAppConfigurationRetriever.PS", "AzureAppConfigurationRetriever.PS\AzureAppConfigurationRetriever.PS.csproj", "{57AC06D8-2E08-4E43-890E-AB4BD19ABC39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{58818621-838F-4304-99F1-86C1AE448222}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6F28FCF8-7FB2-4058-A60F-E2E554124F4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F28FCF8-7FB2-4058-A60F-E2E554124F4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F28FCF8-7FB2-4058-A60F-E2E554124F4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F28FCF8-7FB2-4058-A60F-E2E554124F4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57AC06D8-2E08-4E43-890E-AB4BD19ABC39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57AC06D8-2E08-4E43-890E-AB4BD19ABC39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57AC06D8-2E08-4E43-890E-AB4BD19ABC39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57AC06D8-2E08-4E43-890E-AB4BD19ABC39}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EBEE27D5-2882-45E9-9AA1-B2C15083FBD4}
+	EndGlobalSection
+EndGlobal
