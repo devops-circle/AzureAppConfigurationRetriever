@@ -6,8 +6,7 @@ namespace AzureAppConfigurationRetriever.PS
     [Cmdlet(VerbsCommon.Get, "AzureAppConfigurationsByLabel")]
     [OutputType(typeof(Hashtable))]
     public class GetAzureAppConfigurationsByLabel : PSCmdlet
-    {
-  
+    {  
         [Parameter(Mandatory = true)]
         [ValidateNotNullOrEmpty]
         public string EndPoint { get; set; }
@@ -17,7 +16,7 @@ namespace AzureAppConfigurationRetriever.PS
        
         [Parameter(Mandatory = false, ValueFromPipeline = true)]
         [PSDefaultValue(Value = false)]
-        public bool MergeWithEmptyLabel { get; set; }
+        public SwitchParameter MergeWithEmptyLabel { get; set; }
 
         protected override void BeginProcessing()
         {
@@ -25,7 +24,7 @@ namespace AzureAppConfigurationRetriever.PS
 
         protected override void ProcessRecord()
         {
-            Hashtable result = AzureAppConfigurationRetriever.GetConfigurationsByLabel(EndPoint, Label, MergeWithEmptyLabel);
+            Hashtable result = Core.AzureAppConfigurationRetriever.GetConfigurationsByLabel(EndPoint, Label, MergeWithEmptyLabel.IsPresent);
 
             WriteObject(result);
         }

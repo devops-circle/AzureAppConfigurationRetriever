@@ -6,16 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Management.Automation" Version="7.2.1" IncludeAssets="All" />
+    <PackageReference Include="System.Management.Automation" Version="7.2.1" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AzureAppConfigurationRetriever\AzureAppConfigurationRetriever.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Manifest\" />
-    <Folder Include="LoadContext\" />
+    <ProjectReference Include="..\AzureAppConfigurationRetriever.Core\AzureAppConfigurationRetriever.Core.csproj" />
   </ItemGroup>
 
 </Project>

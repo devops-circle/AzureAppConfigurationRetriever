@@ -1,9 +1,12 @@
 ﻿using Azure.Data.AppConfiguration;
 using Azure.Identity;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace AzureAppConfigurationRetriever
+namespace AzureAppConfigurationRetriever.Core
 {
     public static class AzureAppConfigurationRetriever
     {
