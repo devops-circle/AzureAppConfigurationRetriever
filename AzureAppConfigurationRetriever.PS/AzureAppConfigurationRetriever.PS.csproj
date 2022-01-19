@@ -13,4 +13,9 @@
     <ProjectReference Include="..\AzureAppConfigurationRetriever\AzureAppConfigurationRetriever.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Manifest\" />
+    <Folder Include="LoadContext\" />
+  </ItemGroup>
+
 </Project>

@@ -7,7 +7,7 @@ namespace AzureAppConfigurationRetriever
 {
     public static class AzureAppConfigurationRetriever
     {
-        public static Hashtable GetConfigurations(string endpoint, string label = "", bool mergeWithEmptyLabel = true)
+        public static Hashtable GetConfigurationsByLabel(string endpoint, string label = "", bool mergeWithEmptyLabel = true)
         {
             var cred = new DefaultAzureCredential();
             var client = new ConfigurationClient(new Uri(endpoint), cred);

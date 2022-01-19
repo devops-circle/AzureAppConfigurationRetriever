@@ -3,9 +3,9 @@ using System.Collections;
 
 namespace AzureAppConfigurationRetriever.PS
 {
-    [Cmdlet(VerbsCommon.Get, "AzureAppConfigurations")]
+    [Cmdlet(VerbsCommon.Get, "AzureAppConfigurationsByLabel")]
     [OutputType(typeof(Hashtable))]
-    public class GetAzureAppConfigurations : PSCmdlet
+    public class GetAzureAppConfigurationsByLabel : PSCmdlet
     {
   
         [Parameter(Mandatory = true)]
@@ -25,7 +25,7 @@ namespace AzureAppConfigurationRetriever.PS
 
         protected override void ProcessRecord()
         {
-            Hashtable result = AzureAppConfigurationRetriever.GetConfigurations(EndPoint, Label, MergeWithEmptyLabel);
+            Hashtable result = AzureAppConfigurationRetriever.GetConfigurationsByLabel(EndPoint, Label, MergeWithEmptyLabel);
 
             WriteObject(result);
         }
