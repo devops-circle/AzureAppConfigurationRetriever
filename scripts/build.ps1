@@ -14,7 +14,6 @@ param(
 $ProjectRoot = "$PSScriptRoot/.."
 $outPath = "$ProjectRoot/out/AzureAppConfigurationRetriever.PS"
 $commonPath = "$outPath/Dependencies"
-$corePath = "$outPath/Module.NetCore"
 
 if (Test-Path $outPath) {
     Write-Host "Clean up output path $outPath" -ForegroundColor Magenta
@@ -22,7 +21,6 @@ if (Test-Path $outPath) {
 }
 New-Item -Path $outPath -ItemType Directory
 New-Item -Path $commonPath -ItemType Directory
-New-Item -Path $corePath -ItemType Directory
 
 $Path = "$ProjectRoot/AzureAppConfigurationRetriever.Core"
 Push-Location -Path $Path
@@ -54,7 +52,7 @@ Pop-Location
 
 $commonFiles = [System.Collections.Generic.HashSet[string]]::new()
 
-Write-Host "Start copying files to common path $commonPath" -ForegroundColor Magenta
+Write-Host "Start copying dependencies files to path $commonPath" -ForegroundColor Magenta
 Get-ChildItem -Path "$ProjectRoot/AzureAppConfigurationRetriever.Core/bin/$Configuration/netstandard2.1/publish" |
 Where-Object { $_.Extension -in '.dll', '.pdb' } |
 ForEach-Object { 
@@ -62,11 +60,11 @@ ForEach-Object {
     Copy-Item -LiteralPath $_.FullName -Destination $commonPath 
 }
 
-Write-Host "Start copying files to core path $corePath" -ForegroundColor Magenta
+Write-Host "Start copying main files to path $outPath" -ForegroundColor Magenta
 Get-ChildItem -Path "$ProjectRoot/AzureAppConfigurationRetriever.PS/bin/$Configuration/$NetCoreVersion/publish" |
 Where-Object { $_.Extension -in '.dll', '.pdb' -and -not $commonFiles.Contains($_.Name) } |
 ForEach-Object { 
-    Copy-Item -LiteralPath $_.FullName -Destination $corePath
+    Copy-Item -LiteralPath $_.FullName -Destination $outPath
 }
 
 Write-Host "Copy module manifest to $outPath" -ForegroundColor Magenta

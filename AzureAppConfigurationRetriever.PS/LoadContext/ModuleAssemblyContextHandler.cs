@@ -9,7 +9,7 @@ namespace AzureAppConfigurationRetriever.PS.LoadContext
         // Get the path of the dependencies directory relative to the module file
         private static readonly string dependencyDirPath = Path.GetFullPath(
             Path.Combine(
-                Path.GetDirectoryName(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName),
+                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
                 "Dependencies"));
 
         // Create the custom load context to use, with the path to the dependencies directory
