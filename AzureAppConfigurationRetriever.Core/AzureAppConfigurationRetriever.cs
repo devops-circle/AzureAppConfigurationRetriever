@@ -60,6 +60,5 @@ namespace AzureAppConfigurationRetriever.Core
 
             return result;
         }
-
     }
 }
