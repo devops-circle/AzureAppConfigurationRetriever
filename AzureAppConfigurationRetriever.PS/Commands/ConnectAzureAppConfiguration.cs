@@ -16,14 +16,6 @@ namespace AzureAppConfigurationRetriever.PS.Commands
         [Parameter(Mandatory = false)]
         public ConnectionType ConnectionType { get; set; }
 
-        protected override void BeginProcessing()
-        {
-        }
-
-        protected override void ProcessRecord()
-        {
-        }
-
         protected override void EndProcessing()
         {
             Core.ConnectionType azureConnectionType = (Core.ConnectionType)ConnectionType;

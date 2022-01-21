@@ -8,6 +8,7 @@ namespace AzureAppConfigurationRetriever.PS
     {
         internal IAzureAppConfigurationCredentials _azureAppConfigurationCredentials { get; set; }
 
+
         public BaseCmdlet()
         {
         }
@@ -26,14 +27,19 @@ namespace AzureAppConfigurationRetriever.PS
 
             if (SessionState.PSVariable.Get("credentialConfig") == null)
             {
-                throw new Exception("Run Connect-AzureAppConfiguration first.");
+                throw new CmdletInvocationException("Run Connect-AzureAppConfiguration first.");
             }
 
-            var azureAppConfigurationCredentialsConfig = SessionState.PSVariable.Get("credentialConfig").Value as IAzureAppConfigurationCredentialsConfig;
+            if (SessionState.PSVariable.Get("credentialConfig").Value is IAzureAppConfigurationCredentialsConfig azureAppConfigurationCredentialsConfig)
+            {
+                IAzureAppConfigurationCredentials azureAppConfigurationCredentials = new AzureAppConfigurationCredentials(azureAppConfigurationCredentialsConfig);
 
-            IAzureAppConfigurationCredentials creds = new AzureAppConfigurationCredentials(azureAppConfigurationCredentialsConfig);
-
-            return creds;
+                return azureAppConfigurationCredentials;
+            }
+            else
+            {
+                throw new CmdletInvocationException("No credentials found.");
+            }
         }
     }
 }

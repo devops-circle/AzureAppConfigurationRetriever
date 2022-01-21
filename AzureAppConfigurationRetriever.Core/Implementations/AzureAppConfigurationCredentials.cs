@@ -16,8 +16,7 @@ namespace AzureAppConfigurationRetriever.Core.Implementations
 
         public ConfigurationClient GetClient()
         {
-            ConfigurationClient client = null;
-
+            ConfigurationClient client;
 
             switch (_appConfigurationCredentialsConfig.ConnectionType)
             {

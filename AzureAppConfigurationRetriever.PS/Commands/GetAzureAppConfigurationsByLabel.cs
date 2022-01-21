@@ -27,10 +27,6 @@ namespace AzureAppConfigurationRetriever.PS.Commands
         [PSDefaultValue(Value = false)]
         public SwitchParameter MergeWithEmptyLabel { get; set; }
 
-        protected override void BeginProcessing()
-        {
-        }
-        
         protected override void ProcessRecord()
         {
             var azureAppConfigurationCredentials = base.GetAzureAppConfigurationCredentials();
@@ -41,10 +37,6 @@ namespace AzureAppConfigurationRetriever.PS.Commands
             Hashtable result = retriever.GetConfigurationsByLabel(Label, MergeWithEmptyLabel.IsPresent);
             
              WriteObject(result);
-        }
-
-        protected override void EndProcessing()
-        {
         }
     }
 }
