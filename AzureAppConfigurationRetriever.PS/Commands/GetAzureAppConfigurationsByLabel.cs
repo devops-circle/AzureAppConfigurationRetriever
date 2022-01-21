@@ -1,12 +1,21 @@
-﻿using System.Management.Automation;
-using System.Collections;
+﻿using System.Collections;
+using System.Management.Automation;
+using AzureAppConfigurationRetriever.Core.Interfaces;
 
-namespace AzureAppConfigurationRetriever.PS
+namespace AzureAppConfigurationRetriever.PS.Commands
 {
     [Cmdlet(VerbsCommon.Get, "AzureAppConfigurationsByLabel")]
     [OutputType(typeof(Hashtable))]
-    public class GetAzureAppConfigurationsByLabel : PSCmdlet
-    {  
+    public class GetAzureAppConfigurationsByLabel : BaseCmdlet
+    {
+        public GetAzureAppConfigurationsByLabel()
+        {
+        }
+
+        public GetAzureAppConfigurationsByLabel(CmdletDependencies cmdletDependencies): base(cmdletDependencies)
+        {
+        }
+
         [Parameter(Mandatory = true)]
         [ValidateNotNullOrEmpty]
         public string EndPoint { get; set; }
@@ -21,12 +30,17 @@ namespace AzureAppConfigurationRetriever.PS
         protected override void BeginProcessing()
         {
         }
-
+        
         protected override void ProcessRecord()
         {
-            Hashtable result = Core.AzureAppConfigurationRetriever.GetConfigurationsByLabel(EndPoint, Label, MergeWithEmptyLabel.IsPresent);
+            var azureAppConfigurationCredentials = base.GetAzureAppConfigurationCredentials();
 
-            WriteObject(result);
+            IAzureAppConfigurationRetriever retriever =
+                new Core.Implementations.AzureAppConfigurationRetriever(azureAppConfigurationCredentials);
+
+            Hashtable result = retriever.GetConfigurationsByLabel(Label, MergeWithEmptyLabel.IsPresent);
+            
+             WriteObject(result);
         }
 
         protected override void EndProcessing()

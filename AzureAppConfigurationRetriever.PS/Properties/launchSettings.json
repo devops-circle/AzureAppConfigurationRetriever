@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "pwsh": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+      "commandLineArgs": "-NoProfile -NoExit -Command  $(SolutionDir)scripts\\build.ps1 ; Import-Module $(SolutionDir)out\\AzureAppConfigurationRetriever.PS\\AzureAppConfigurationRetriever.PS.dll",
+      "workingDirectory": "$(SolutionDir)\\scripts"
+    }
+  }
+}

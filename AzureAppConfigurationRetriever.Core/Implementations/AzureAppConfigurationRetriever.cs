@@ -1,20 +1,26 @@
-﻿using Azure.Data.AppConfiguration;
-using Azure.Identity;
-using Microsoft.Extensions.Configuration.AzureAppConfiguration;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Azure.Data.AppConfiguration;
+using AzureAppConfigurationRetriever.Core.Interfaces;
+using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 
-namespace AzureAppConfigurationRetriever.Core
+namespace AzureAppConfigurationRetriever.Core.Implementations
 {
-    public static class AzureAppConfigurationRetriever
+    public class AzureAppConfigurationRetriever : IAzureAppConfigurationRetriever
     {
-        public static Hashtable GetConfigurationsByLabel(string endpoint, string label = "", bool mergeWithEmptyLabel = true)
-        {
-            var cred = new DefaultAzureCredential();
-            var client = new ConfigurationClient(new Uri(endpoint), cred);
+        private readonly IAzureAppConfigurationCredentials _azureAppConfigurationCredentials;
 
+        public AzureAppConfigurationRetriever(IAzureAppConfigurationCredentials azureAppConfigurationCredentials)
+        {
+            _azureAppConfigurationCredentials = azureAppConfigurationCredentials;
+        }
+
+        public Hashtable GetConfigurationsByLabel(string label = "", bool mergeWithEmptyLabel = true)
+        {
+            var client = _azureAppConfigurationCredentials.GetClient();
+            
             Dictionary<string, string> retValue;
 
             if (String.IsNullOrEmpty(label))
@@ -33,7 +39,7 @@ namespace AzureAppConfigurationRetriever.Core
                 labelSettingsDictionaryList.Add(emptyLabelSettings);
                 labelSettingsDictionaryList.Add(labelSetting);
 
-                retValue = Merge(labelSettingsDictionaryList);
+                retValue = MergeDictionaries(labelSettingsDictionaryList);
             }
             else
             {
@@ -42,16 +48,16 @@ namespace AzureAppConfigurationRetriever.Core
 
             return new Hashtable(retValue);
         }
-        private static Dictionary<K, V> Merge<K, V>(IEnumerable<Dictionary<K, V>> dictionaries) where K : notnull
+        private static Dictionary<TKey, TValue> MergeDictionaries<TKey, TValue>(IEnumerable<Dictionary<TKey, TValue>> dictionaries) where TKey : notnull
         {
             if (dictionaries is null)
             {
                 throw new ArgumentNullException(nameof(dictionaries));
             }
 
-            Dictionary<K, V> result = new Dictionary<K, V>();
+            Dictionary<TKey, TValue> result = new Dictionary<TKey, TValue>();
 
-            foreach (Dictionary<K, V> dict in dictionaries)
+            foreach (Dictionary<TKey, TValue> dict in dictionaries)
             {
                 return dictionaries.SelectMany(x => x)
                  .ToLookup(pair => pair.Key, pair => pair.Value)

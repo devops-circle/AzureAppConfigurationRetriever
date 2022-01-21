@@ -7,13 +7,13 @@ namespace AzureAppConfigurationRetriever.PS.LoadContext
     public class ModuleAssemblyContextHandler : IModuleAssemblyInitializer
     {
         // Get the path of the dependencies directory relative to the module file
-        private static readonly string dependencyDirPath = Path.GetFullPath(
+        private static readonly string _dependencyDirPath = Path.GetFullPath(
             Path.Combine(
                 Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
                 "Dependencies"));
 
         // Create the custom load context to use, with the path to the dependencies directory
-        private static readonly DependencyAssemblyLoadContext dependencyLoadContext = new DependencyAssemblyLoadContext(dependencyDirPath);
+        private static readonly DependencyAssemblyLoadContext _dependencyLoadContext = new DependencyAssemblyLoadContext(_dependencyDirPath);
 
         // This will run when the module is imported
         public void OnImport()
@@ -31,7 +31,7 @@ namespace AzureAppConfigurationRetriever.PS.LoadContext
             if (assemblyToResolve.Name == "AzureAppConfigurationRetriever.Core")
             {
                 // Load it using our custom assembly load context
-                return dependencyLoadContext.LoadFromAssemblyName(assemblyToResolve);
+                return _dependencyLoadContext.LoadFromAssemblyName(assemblyToResolve);
             }
             else
             {
