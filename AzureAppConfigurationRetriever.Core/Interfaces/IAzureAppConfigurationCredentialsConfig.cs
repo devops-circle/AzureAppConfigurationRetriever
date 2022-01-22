@@ -5,5 +5,7 @@
         public string EndPointUrl { get; set; }
 
         public ConnectionType ConnectionType { get; set; }
+
+        public string ConnectionString { get; set; }
     }
 }

@@ -32,9 +32,21 @@ namespace AzureAppConfigurationRetriever.Core.Implementations
                     var managedIdentityCredential = new ManagedIdentityCredential();
                     client = new ConfigurationClient(new Uri(_appConfigurationCredentialsConfig.EndPointUrl), managedIdentityCredential);
                     break;
-                case ConnectionType.Environment:
                 case ConnectionType.VisualStudio:
+                    var visualStudioCredential = new VisualStudioCredential();
+                    client = new ConfigurationClient(new Uri(_appConfigurationCredentialsConfig.EndPointUrl), visualStudioCredential);
+                    break;
+                case ConnectionType.VisualStudioCode:
+                    var visualStudioCodeCredential = new VisualStudioCodeCredential();
+                    client = new ConfigurationClient(new Uri(_appConfigurationCredentialsConfig.EndPointUrl), visualStudioCodeCredential);
+                    break;
                 case ConnectionType.ConnectionString:
+                    client = new ConfigurationClient(_appConfigurationCredentialsConfig.ConnectionString);
+                    break;
+                case ConnectionType.Environment:
+                    string connection = Environment.GetEnvironmentVariable("AZURE_APP_CONFIGURATION_CONN") ?? throw new InvalidOperationException("Environment variable AZURE_APP_CONFIGURATION_CONN not found or empty");
+                    client = new ConfigurationClient(connection);
+                    break;
                 case ConnectionType.Default:
                 default:
                     var defaultCred = new DefaultAzureCredential();

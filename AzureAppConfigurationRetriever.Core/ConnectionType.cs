@@ -7,6 +7,7 @@ namespace AzureAppConfigurationRetriever.Core
         Environment,
         ManagedIdentity,
         VisualStudio,
+        VisualStudioCode,
         AzureCli,
         AzurePowerShell,
         ConnectionString

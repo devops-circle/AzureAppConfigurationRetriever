@@ -7,7 +7,9 @@ namespace AzureAppConfigurationRetriever.PS
         Environment,
         ManagedIdentity,
         VisualStudio,
+        VisualStudioCode,
         AzureCli,
-        AzurePowerShell
+        AzurePowerShell,
+        ConnectionString
     }
 }

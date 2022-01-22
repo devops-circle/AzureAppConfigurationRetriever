@@ -57,9 +57,10 @@ namespace AzureAppConfigurationRetriever.Core.Implementations
 
             Dictionary<TKey, TValue> result = new Dictionary<TKey, TValue>();
 
-            foreach (Dictionary<TKey, TValue> dict in dictionaries)
+            var dictionariesList = dictionaries.ToList();
+            foreach (Dictionary<TKey, TValue> dict in dictionariesList)
             {
-                return dictionaries.SelectMany(x => x)
+                return dictionariesList.SelectMany(x => x)
                  .ToLookup(pair => pair.Key, pair => pair.Value)
                  .ToDictionary(g => g.Key, g => g.Last());
             }
