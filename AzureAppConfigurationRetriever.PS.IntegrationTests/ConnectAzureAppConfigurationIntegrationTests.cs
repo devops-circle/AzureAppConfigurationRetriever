@@ -16,6 +16,5 @@ namespace AzureAppConfigurationRetriever.PS.IntegrationTests
 
             Assert.Empty(results);
         }
-
     }
 }
