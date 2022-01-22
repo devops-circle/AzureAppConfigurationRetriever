@@ -16,10 +16,6 @@ namespace AzureAppConfigurationRetriever.PS.Commands
         {
         }
 
-        [Parameter(Mandatory = true)]
-        [ValidateNotNullOrEmpty]
-        public string EndPoint { get; set; }
-
         [Parameter(Mandatory = false, ValueFromPipeline = true)]
         public string Label { get; set; }
        
