@@ -8,7 +8,6 @@ namespace AzureAppConfigurationRetriever.PS
     {
         internal IAzureAppConfigurationCredentials AzureAppConfigurationCredentials { get; set; }
         internal ISessionStateWrapper SessionStateWrapper { get; set; }
-
         public BaseCmdlet()
         {
         }
@@ -62,6 +61,5 @@ namespace AzureAppConfigurationRetriever.PS
 
             return sessionStateWrapper;
         }
-
     }
 }

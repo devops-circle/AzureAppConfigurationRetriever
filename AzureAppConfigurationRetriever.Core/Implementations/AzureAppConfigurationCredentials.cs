@@ -41,11 +41,7 @@ namespace AzureAppConfigurationRetriever.Core.Implementations
                     client = new ConfigurationClient(new Uri(_appConfigurationCredentialsConfig.EndPointUrl), visualStudioCodeCredential);
                     break;
                 case ConnectionType.ConnectionString:
-                    client = new ConfigurationClient(_appConfigurationCredentialsConfig.ConnectionString);
-                    break;
-                case ConnectionType.Environment:
-                    string connection = Environment.GetEnvironmentVariable("AZURE_APP_CONFIGURATION_CONN") ?? throw new InvalidOperationException("Environment variable AZURE_APP_CONFIGURATION_CONN not found or empty");
-                    client = new ConfigurationClient(connection);
+                    client = new ConfigurationClient(_appConfigurationCredentialsConfig.ConnectionString.ConvertToUnsecureString());
                     break;
                 case ConnectionType.Default:
                 default:

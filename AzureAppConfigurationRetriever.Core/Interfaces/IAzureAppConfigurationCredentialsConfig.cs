@@ -1,4 +1,6 @@
-﻿namespace AzureAppConfigurationRetriever.Core.Interfaces
+﻿using System.Security;
+
+namespace AzureAppConfigurationRetriever.Core.Interfaces
 {
     public interface IAzureAppConfigurationCredentialsConfig
     {
@@ -6,6 +8,6 @@
 
         public ConnectionType ConnectionType { get; set; }
 
-        public string ConnectionString { get; set; }
+        public SecureString ConnectionString { get; set; }
     }
 }
