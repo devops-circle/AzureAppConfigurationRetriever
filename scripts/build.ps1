@@ -32,7 +32,7 @@ if ($Full) {
     dotnet build-server shutdown
     dotnet clean
 }
-Write-Host "Publishing" -ForegroundColor DarkYellow
+Write-Host "Publishing in $Configuration mode" -ForegroundColor DarkYellow
 dotnet publish -c $Configuration
 Pop-Location
 
@@ -46,7 +46,7 @@ if ($Full) {
     dotnet build-server shutdown
     dotnet clean
 }
-Write-Host "Publishing" -ForegroundColor DarkYellow
+Write-Host "Publishing in $Configuration mode" -ForegroundColor DarkYellow
 dotnet publish -c $Configuration -f $NetCoreVersion
 Pop-Location
 

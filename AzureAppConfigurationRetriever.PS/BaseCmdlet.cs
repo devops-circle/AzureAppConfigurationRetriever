@@ -33,12 +33,14 @@ namespace AzureAppConfigurationRetriever.PS
                 return AzureAppConfigurationCredentials;
             }
 
-            if (SessionState.PSVariable.Get("credentialConfig") == null)
+            var sessionStateWrapper = GetSessionStateWrapper();
+
+            if (sessionStateWrapper.GetVariable(this,"credentialConfig") == null)
             {
                 throw new CmdletInvocationException("Run Connect-AzureAppConfiguration first.");
             }
 
-            if (SessionState.PSVariable.Get("credentialConfig").Value is IAzureAppConfigurationCredentialsConfig azureAppConfigurationCredentialsConfig)
+            if (sessionStateWrapper.GetVariable(this, "credentialConfig").Value is IAzureAppConfigurationCredentialsConfig azureAppConfigurationCredentialsConfig)
             {
                 IAzureAppConfigurationCredentials azureAppConfigurationCredentials = new AzureAppConfigurationCredentials(azureAppConfigurationCredentialsConfig);
 
@@ -49,7 +51,7 @@ namespace AzureAppConfigurationRetriever.PS
             
         }
 
-        internal ISessionStateWrapper getSessionStateWrapper()
+        internal ISessionStateWrapper GetSessionStateWrapper()
         {
             if (SessionStateWrapper != null)
             {

@@ -31,11 +31,9 @@ namespace AzureAppConfigurationRetriever.PS.Commands
             IAzureAppConfigurationCredentialsConfig credentialsConfig =
                 new AzureAppConfigurationCredentialsConfig(EndPointUrl, azureConnectionType);
 
-            var sessionStateWrapper = getSessionStateWrapper();
+            var sessionStateWrapper = GetSessionStateWrapper();
             
             sessionStateWrapper.SetVariable(this, new PSVariable("credentialConfig", credentialsConfig, ScopedItemOptions.Private));
-
-            //SessionState.PSVariable.Set(new PSVariable("credentialConfig", credentialsConfig, ScopedItemOptions.Private));
         }
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Management.Automation;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Management.Automation;
 
 namespace AzureAppConfigurationRetriever.PS
 {
@@ -12,6 +7,16 @@ namespace AzureAppConfigurationRetriever.PS
         public void SetVariable(PSCmdlet cmdlet, PSVariable psVariable)
         {
             cmdlet.SessionState.PSVariable.Set(psVariable);
+        }
+
+        public void RemoveVariable(PSCmdlet cmdlet, string name)
+        {
+            cmdlet.SessionState.PSVariable.Remove(name);
+        }
+
+        public PSVariable GetVariable(PSCmdlet cmdlet, string name)
+        {
+            return cmdlet.SessionState.PSVariable.Get(name);
         }
     }
 }

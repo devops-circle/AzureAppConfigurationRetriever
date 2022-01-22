@@ -9,7 +9,9 @@ namespace AzureAppConfigurationRetriever.PS.Commands
     {
         protected override void EndProcessing()
         {
-            SessionState.PSVariable.Remove("credentialConfig");
+            var sessionStateWrapper = this.GetSessionStateWrapper();
+
+            sessionStateWrapper.RemoveVariable(this,"credentialConfig");
         }
     }
 }
