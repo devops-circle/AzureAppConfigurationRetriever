@@ -21,14 +21,13 @@ namespace AzureAppConfigurationRetriever.PS.Commands
         }
 
         [ValidateNotNullOrEmpty]
-        [Parameter(ParameterSetName = "DefaultConnection")]
-        [Parameter(ParameterSetName = "ConnectionString")]
-        [Parameter(ParameterSetName = "AzureCliConnection")]
-        [Parameter(ParameterSetName = "PowerShellConnection")]
-        [Parameter(ParameterSetName = "ManagedIdentityConnection")]
-        [Parameter(ParameterSetName = "VisualStudioConnection")]
-        [Parameter(ParameterSetName = "VisualStudioCodeConnection")]
-        [Parameter(Position = 0, Mandatory = true)]
+        [Parameter(ParameterSetName = "DefaultConnection", Mandatory = true, Position = 0)]
+        [Parameter(ParameterSetName = "ConnectionString", Mandatory = true, Position = 0)]
+        [Parameter(ParameterSetName = "AzureCliConnection", Mandatory = true, Position = 0)]
+        [Parameter(ParameterSetName = "PowerShellConnection", Mandatory = true, Position = 0)]
+        [Parameter(ParameterSetName = "ManagedIdentityConnection", Mandatory = true, Position = 0)]
+        [Parameter(ParameterSetName = "VisualStudioConnection", Mandatory = true, Position = 0)]
+        [Parameter(ParameterSetName = "VisualStudioCodeConnection", Mandatory = true, Position = 0)]
         public string EndPointUrl { get; set; }
 
         [Parameter(ParameterSetName = "DefaultConnection", Mandatory = false)]
