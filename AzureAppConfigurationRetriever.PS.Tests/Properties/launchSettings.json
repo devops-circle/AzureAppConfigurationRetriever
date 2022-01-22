@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "AzureAppConfigurationRetriever.PS.Tests": {
+      "commandName": "Project"
+    }
+  }
+}

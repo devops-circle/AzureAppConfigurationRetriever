@@ -9,6 +9,14 @@ namespace AzureAppConfigurationRetriever.PS.Commands
     [OutputType(typeof(Hashtable))]
     public class ConnectAzureAppConfiguration : BaseCmdlet
     {
+        public ConnectAzureAppConfiguration()
+        {
+        }
+
+        public ConnectAzureAppConfiguration(CmdletDependencies cmdletDependencies): base(cmdletDependencies)
+        {
+        }
+
         [Parameter(Mandatory = true)]
         [ValidateNotNullOrEmpty]
         public string EndPointUrl { get; set; }
@@ -23,7 +31,11 @@ namespace AzureAppConfigurationRetriever.PS.Commands
             IAzureAppConfigurationCredentialsConfig credentialsConfig =
                 new AzureAppConfigurationCredentialsConfig(EndPointUrl, azureConnectionType);
 
-            SessionState.PSVariable.Set(new PSVariable("credentialConfig", credentialsConfig, ScopedItemOptions.Private));
+            var sessionStateWrapper = getSessionStateWrapper();
+            
+            sessionStateWrapper.SetVariable(this, new PSVariable("credentialConfig", credentialsConfig, ScopedItemOptions.Private));
+
+            //SessionState.PSVariable.Set(new PSVariable("credentialConfig", credentialsConfig, ScopedItemOptions.Private));
         }
     }
 }

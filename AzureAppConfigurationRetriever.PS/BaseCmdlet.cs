@@ -6,8 +6,8 @@ namespace AzureAppConfigurationRetriever.PS
 {
     public class BaseCmdlet : PSCmdlet
     {
-        internal IAzureAppConfigurationCredentials _azureAppConfigurationCredentials { get; set; }
-
+        internal IAzureAppConfigurationCredentials AzureAppConfigurationCredentials { get; set; }
+        internal ISessionStateWrapper SessionStateWrapper { get; set; }
 
         public BaseCmdlet()
         {
@@ -15,14 +15,22 @@ namespace AzureAppConfigurationRetriever.PS
 
         public BaseCmdlet(CmdletDependencies cmdletDependencies)
         {
-            _azureAppConfigurationCredentials = cmdletDependencies.AzureAppConfigurationCredentials;
+            AzureAppConfigurationCredentials = cmdletDependencies.AzureAppConfigurationCredentials;
+            SessionStateWrapper = cmdletDependencies.SessionStateWrapper;
+        }
+
+        internal void ProcessInternal()
+        {
+            BeginProcessing();
+            ProcessRecord();
+            EndProcessing();
         }
 
         internal IAzureAppConfigurationCredentials GetAzureAppConfigurationCredentials()
         {
-            if (_azureAppConfigurationCredentials != null)
+            if (AzureAppConfigurationCredentials != null)
             {
-                return _azureAppConfigurationCredentials;
+                return AzureAppConfigurationCredentials;
             }
 
             if (SessionState.PSVariable.Get("credentialConfig") == null)
@@ -36,10 +44,22 @@ namespace AzureAppConfigurationRetriever.PS
 
                 return azureAppConfigurationCredentials;
             }
-            else
-            {
-                throw new CmdletInvocationException("No credentials found.");
-            }
+
+            throw new CmdletInvocationException("No credentials found.");
+            
         }
+
+        internal ISessionStateWrapper getSessionStateWrapper()
+        {
+            if (SessionStateWrapper != null)
+            {
+                return SessionStateWrapper;
+            }
+
+            SessionStateWrapper sessionStateWrapper = new SessionStateWrapper();
+
+            return sessionStateWrapper;
+        }
+
     }
 }
