@@ -18,6 +18,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureAppConfigurationRetrie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureAppConfigurationRetriever.Core.Tests", "AzureAppConfigurationRetriever.Core.Tests\AzureAppConfigurationRetriever.Core.Tests.csproj", "{6ED226F9-CA2D-48F0-BBEA-DE6ECFBD8FC1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{445B4141-5186-4953-B045-CAAAA303DBE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{639F1569-2C72-4E65-866A-6F64DF012886} = {445B4141-5186-4953-B045-CAAAA303DBE4}
+		{7F27FE60-007C-429E-BF82-58B4BC737953} = {445B4141-5186-4953-B045-CAAAA303DBE4}
+		{6ED226F9-CA2D-48F0-BBEA-DE6ECFBD8FC1} = {445B4141-5186-4953-B045-CAAAA303DBE4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EBEE27D5-2882-45E9-9AA1-B2C15083FBD4}
