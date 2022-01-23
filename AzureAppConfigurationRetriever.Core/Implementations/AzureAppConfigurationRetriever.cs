@@ -17,7 +17,7 @@ namespace AzureAppConfigurationRetriever.Core.Implementations
             _azureAppConfigurationCredentials = azureAppConfigurationCredentials;
         }
 
-        public Hashtable GetConfigurationsByLabel(string label = "", bool mergeWithEmptyLabel = true)
+        public Hashtable GetConfigurationsByLabel(string label = "", bool mergeWithEmptyLabel = false)
         {
             var client = _azureAppConfigurationCredentials.GetClient();
             
