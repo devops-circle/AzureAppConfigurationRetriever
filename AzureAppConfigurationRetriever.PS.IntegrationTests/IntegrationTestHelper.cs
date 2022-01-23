@@ -11,7 +11,7 @@ namespace AzureAppConfigurationRetriever.PS.IntegrationTests
 
             string path = Directory.GetParent(workingDirectory).Parent.Parent.Parent.FullName;
 
-            path = Path.Combine(path, @"out\AzureAppConfigurationRetriever.PS\AzureAppConfigurationRetriever.PS.dll");
+            path = Path.Combine(path, @"out\AzureAppConfigurationRetriever\AzureAppConfigurationRetriever.PS.dll");
 
             return path;
         }

@@ -46,7 +46,7 @@ namespace AzureAppConfigurationRetriever.Core.Implementations
                 case ConnectionType.Default:
                 default:
                     var defaultCred = new DefaultAzureCredential();
-                    client = new ConfigurationClient(new Uri(_appConfigurationCredentialsConfig.EndPointUrl), defaultCred);
+                    client = new ConfigurationClient(new Uri(_appConfigurationCredentialsConfig.EndPointUrl), defaultCred, new ConfigurationClientOptions());
                     break;
             }
             return client;

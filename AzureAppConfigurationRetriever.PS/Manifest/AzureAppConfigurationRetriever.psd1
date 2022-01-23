@@ -67,7 +67,8 @@ FunctionsToExport = @()
 CmdletsToExport = @(
     "Connect-AzureAppConfiguration",
     "Disconnect-AzureAppConfiguration",
-	"Get-AzureAppConfigurationsByLabel"
+	"Get-AzureAppConfigurationsByLabel",
+    "Get-AzureAppConfiguration"
 )
 
 # Variables to export from this module

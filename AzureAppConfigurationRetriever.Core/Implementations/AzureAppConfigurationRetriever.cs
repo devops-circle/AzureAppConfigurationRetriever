@@ -50,6 +50,26 @@ namespace AzureAppConfigurationRetriever.Core.Implementations
 
             return new Hashtable(retValue);
         }
+
+        public string GetConfiguration(string valueName, string label = "")
+        {
+            if (string.IsNullOrEmpty(valueName))
+            {
+                throw new ArgumentNullException(nameof(valueName));
+            }
+
+            var client = this._azureAppConfigurationCredentials.GetClient();
+
+            if (string.IsNullOrEmpty(label))
+            {
+                label = LabelFilter.Null;
+            }
+
+            var result = client.GetConfigurationSetting(valueName, label).Value.Value;
+
+            return result;
+        }
+
         private static Dictionary<TKey, TValue> MergeDictionaries<TKey, TValue>(IEnumerable<Dictionary<TKey, TValue>> dictionaries) where TKey : notnull
         {
             if (dictionaries is null)

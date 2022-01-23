@@ -12,7 +12,7 @@ param(
 )
 
 $ProjectRoot = "$PSScriptRoot/.."
-$outPath = "$ProjectRoot/out/AzureAppConfigurationRetriever.PS"
+$outPath = "$ProjectRoot/out/AzureAppConfigurationRetriever"
 $commonPath = "$outPath/Dependencies"
 
 if (Test-Path $outPath) {
@@ -68,7 +68,7 @@ ForEach-Object {
 }
 
 Write-Host "Copy module manifest to $outPath" -ForegroundColor Magenta
-Copy-Item -Path "$ProjectRoot/AzureAppConfigurationRetriever.PS/Manifest/AzureAppConfigurationRetriever.PS.psd1" -Destination $outPath
+Copy-Item -Path "$ProjectRoot/AzureAppConfigurationRetriever.PS/Manifest/AzureAppConfigurationRetriever.psd1" -Destination $outPath
 
 if (-not $PSBoundParameters.ContainsKey('Version')) {
     try {
@@ -82,10 +82,10 @@ if (-not $PSBoundParameters.ContainsKey('Version')) {
 if($Version) {
     Write-Host "Setting Version $Version in module" -ForegroundColor Magenta
     $SemVer, $PreReleaseTag = $Version.Split('-')
-    Update-ModuleManifest -Path "$outPath/AzureAppConfigurationRetriever.PS.psd1" -ModuleVersion $SemVer -Prerelease $PreReleaseTag
+    Update-ModuleManifest -Path "$outPath/AzureAppConfigurationRetriever.psd1" -ModuleVersion $SemVer -Prerelease $PreReleaseTag
 }
 
 if($Zip) {
     Write-Host "Zipping to $outPath" -ForegroundColor Magenta
-    Compress-Archive -Path $outPath -DestinationPath "$ProjectRoot/AzureAppConfigurationRetriever.PS.zip" -Force
+    Compress-Archive -Path $outPath -DestinationPath "$ProjectRoot/AzureAppConfigurationRetriever.zip" -Force
 }
