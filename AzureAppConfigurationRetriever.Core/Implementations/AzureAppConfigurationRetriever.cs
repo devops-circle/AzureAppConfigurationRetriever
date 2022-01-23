@@ -31,13 +31,15 @@ namespace AzureAppConfigurationRetriever.Core.Implementations
             var labelSetting = client.GetConfigurationSettings(new SettingSelector() { LabelFilter = label }).ToDictionary(x => x.Key, x => x.Value);
 
             //Parse the setting without label
-            if (mergeWithEmptyLabel && !String.IsNullOrEmpty(label))
+            if (mergeWithEmptyLabel && label != LabelFilter.Null)
             {
                 var emptyLabelSettings = client.GetConfigurationSettings(new SettingSelector() { LabelFilter = LabelFilter.Null }).ToDictionary(x => x.Key, x => x.Value);
 
-                List<Dictionary<string, string>> labelSettingsDictionaryList = new List<Dictionary<string, string>>();
-                labelSettingsDictionaryList.Add(emptyLabelSettings);
-                labelSettingsDictionaryList.Add(labelSetting);
+                List<Dictionary<string, string>> labelSettingsDictionaryList = new List<Dictionary<string, string>>
+                {
+                    emptyLabelSettings,
+                    labelSetting
+                };
 
                 retValue = MergeDictionaries(labelSettingsDictionaryList);
             }
