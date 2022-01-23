@@ -17,13 +17,15 @@ namespace AzureAppConfigurationRetriever.PS.Tests
             CmdletDependencies deps = new CmdletDependencies()
             {
                 AzureAppConfigurationCredentials = azureAppConfigurationCredentials,
-                SessionStateWrapper = sessionStateWrapper
+                SessionStateWrapper = sessionStateWrapper,
+                ParameterSetNameUsed = "DefaultConnection"
             };
 
             var psEmulator = new PowershellEmulator();
             var cmdlet = new ConnectAzureAppConfiguration(deps)
             {
-                EndPointUrl = "https://marcoconfigtest.azconfig.io"
+                EndPointUrl = "https://marcoconfigtest.azconfig.io",
+                UseDefaultConnection = true
             };
             cmdlet.CommandRuntime = psEmulator;
 

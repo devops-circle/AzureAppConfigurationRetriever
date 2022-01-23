@@ -55,7 +55,9 @@ namespace AzureAppConfigurationRetriever.PS.Commands
         {
             ConnectionType connectionType;
 
-            switch (this.ParameterSetName)
+            string parameterSetName = String.IsNullOrEmpty(this.ParameterSetName) ? this.ParamterSetUsed : this.ParameterSetName;
+
+            switch (parameterSetName)
             {
                 case "DefaultConnection":
                     connectionType = ConnectionType.Default;

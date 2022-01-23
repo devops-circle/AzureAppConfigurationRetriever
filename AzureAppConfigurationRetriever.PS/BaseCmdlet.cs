@@ -16,7 +16,10 @@ namespace AzureAppConfigurationRetriever.PS
         {
             AzureAppConfigurationCredentials = cmdletDependencies.AzureAppConfigurationCredentials;
             SessionStateWrapper = cmdletDependencies.SessionStateWrapper;
+            ParamterSetUsed = cmdletDependencies.ParameterSetNameUsed;
         }
+
+        internal string ParamterSetUsed { get; set; }
 
         internal void ProcessInternal()
         {
