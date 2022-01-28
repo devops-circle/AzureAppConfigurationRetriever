@@ -4,7 +4,7 @@ using System.Security;
 
 namespace AzureAppConfigurationRetriever.Core
 {
-    internal static class Extensions
+    public static class Extensions
     {
         public static string ConvertToUnsecureString(this SecureString secureString)
         {
