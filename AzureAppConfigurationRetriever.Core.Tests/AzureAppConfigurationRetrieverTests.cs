@@ -38,7 +38,7 @@ namespace AzureAppConfigurationRetriever.Core.Tests
 
             Pageable<ConfigurationSetting> configPageable = Pageable<ConfigurationSetting>.FromPages(new[] { configPage_1, configPage_2 });
 
-            var azureAppConfigurationCredentials = Substitute.For<IAzureAppConfigurationCredentials>();
+            var azureAppConfigurationCredentials = Substitute.For<IAzureAppConfigurationClientFactory>();
 
             azureAppConfigurationCredentials.GetClient().GetConfigurationSettings(Arg.Is<SettingSelector>(sel => sel.LabelFilter == LabelFilter.Null )).Returns(configPageable);
 

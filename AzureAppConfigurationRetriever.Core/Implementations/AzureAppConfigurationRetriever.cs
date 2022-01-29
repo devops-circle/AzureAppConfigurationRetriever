@@ -10,9 +10,9 @@ namespace AzureAppConfigurationRetriever.Core.Implementations
 {
     public class AzureAppConfigurationRetriever : IAzureAppConfigurationRetriever
     {
-        private readonly IAzureAppConfigurationCredentials _azureAppConfigurationCredentials;
+        private readonly IAzureAppConfigurationClientFactory _azureAppConfigurationCredentials;
 
-        public AzureAppConfigurationRetriever(IAzureAppConfigurationCredentials azureAppConfigurationCredentials)
+        public AzureAppConfigurationRetriever(IAzureAppConfigurationClientFactory azureAppConfigurationCredentials)
         {
             _azureAppConfigurationCredentials = azureAppConfigurationCredentials;
         }

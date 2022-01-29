@@ -6,7 +6,7 @@ namespace AzureAppConfigurationRetriever.PS
 {
     public class BaseCmdlet : PSCmdlet
     {
-        internal IAzureAppConfigurationCredentials AzureAppConfigurationCredentials { get; set; }
+        internal IAzureAppConfigurationClientFactory AzureAppConfigurationCredentials { get; set; }
         internal ISessionStateWrapper SessionStateWrapper { get; set; }
         public BaseCmdlet()
         {
@@ -28,7 +28,7 @@ namespace AzureAppConfigurationRetriever.PS
             EndProcessing();
         }
 
-        internal IAzureAppConfigurationCredentials GetAzureAppConfigurationCredentials()
+        internal IAzureAppConfigurationClientFactory GetAzureAppConfigurationCredentials()
         {
             if (AzureAppConfigurationCredentials != null)
             {
@@ -44,7 +44,7 @@ namespace AzureAppConfigurationRetriever.PS
 
             if (sessionStateWrapper.GetVariable(this, "credentialConfig").Value is IAzureAppConfigurationCredentialsConfig azureAppConfigurationCredentialsConfig)
             {
-                IAzureAppConfigurationCredentials azureAppConfigurationCredentials = new AzureAppConfigurationCredentials(azureAppConfigurationCredentialsConfig);
+                IAzureAppConfigurationClientFactory azureAppConfigurationCredentials = new AzureAppConfigurationClientFactory(azureAppConfigurationCredentialsConfig);
 
                 return azureAppConfigurationCredentials;
             }

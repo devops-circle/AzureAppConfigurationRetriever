@@ -11,7 +11,7 @@ namespace AzureAppConfigurationRetriever.PS.Tests
         [Trait("Category", "UnitTest")]
         public void ConnectHasSavedSessionVariable()
         {
-            var azureAppConfigurationCredentials = Substitute.For<IAzureAppConfigurationCredentials>();
+            var azureAppConfigurationCredentials = Substitute.For<IAzureAppConfigurationClientFactory>();
             var sessionStateWrapper = Substitute.For<ISessionStateWrapper>();
 
             CmdletDependencies deps = new CmdletDependencies()

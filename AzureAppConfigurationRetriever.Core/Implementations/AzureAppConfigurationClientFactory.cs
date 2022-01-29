@@ -5,11 +5,11 @@ using System;
 
 namespace AzureAppConfigurationRetriever.Core.Implementations
 {
-    public class AzureAppConfigurationCredentials: IAzureAppConfigurationCredentials
+    public class AzureAppConfigurationClientFactory : IAzureAppConfigurationClientFactory
     {
         private readonly IAzureAppConfigurationCredentialsConfig _appConfigurationCredentialsConfig;
 
-        public AzureAppConfigurationCredentials(IAzureAppConfigurationCredentialsConfig azureAppConfigurationCredentialsConfig)
+        public AzureAppConfigurationClientFactory(IAzureAppConfigurationCredentialsConfig azureAppConfigurationCredentialsConfig)
         {
             _appConfigurationCredentialsConfig = azureAppConfigurationCredentialsConfig;
         }

@@ -2,7 +2,7 @@
 
 namespace AzureAppConfigurationRetriever.Core.Interfaces
 {
-    public interface IAzureAppConfigurationCredentials
+    public interface IAzureAppConfigurationClientFactory
     {
         public ConfigurationClient GetClient();
     }
