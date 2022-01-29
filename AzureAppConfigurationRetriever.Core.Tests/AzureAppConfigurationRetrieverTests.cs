@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Azure;
@@ -11,6 +12,36 @@ namespace AzureAppConfigurationRetriever.Core.Tests
 {
     public class AzureAppConfigurationRetrieverTests
     {
+        [Fact]
+        public void GetConfigurationWithNullThrows()
+        {
+            var azureAppConfigurationCredentials = Substitute.For<IAzureAppConfigurationClientFactory>();
+            Implementations.AzureAppConfigurationRetriever retriever =
+                new Implementations.AzureAppConfigurationRetriever(azureAppConfigurationCredentials);
+
+            Assert.Throws<ArgumentNullException>(() => retriever.GetConfiguration(null));
+        }
+
+        [Fact]
+        public void GetConfigurationNoLabel()
+        {
+            var azureAppConfigurationCredentials = Substitute.For<IAzureAppConfigurationClientFactory>();
+
+            var response = Response.FromValue(new ConfigurationSetting("name", "marco"),
+                Substitute.For<Response>());
+
+            azureAppConfigurationCredentials.GetClient().GetConfigurationSetting(Arg.Any<string>(), Arg.Any<string>())
+                .ReturnsForAnyArgs(response);
+
+            Implementations.AzureAppConfigurationRetriever retriever =
+                new Implementations.AzureAppConfigurationRetriever(azureAppConfigurationCredentials);
+
+            //No selector
+            var result = retriever.GetConfiguration("name");
+
+            Assert.Equal("marco", result);
+        }
+
         [Fact]
         public void RetrieveWithEmptyLabelAndNoSelector()
         {

@@ -72,17 +72,12 @@ namespace AzureAppConfigurationRetriever.Core.Implementations
 
         private static Dictionary<TKey, TValue> MergeDictionaries<TKey, TValue>(IEnumerable<Dictionary<TKey, TValue>> dictionaries) where TKey : notnull
         {
-            if (dictionaries is null)
-            {
-                throw new ArgumentNullException(nameof(dictionaries));
-            }
-
             Dictionary<TKey, TValue> result = new Dictionary<TKey, TValue>();
 
             var dictionariesList = dictionaries.ToList();
             foreach (Dictionary<TKey, TValue> unused in dictionariesList)
             {
-                return dictionariesList.SelectMany(x => x)
+                result = dictionariesList.SelectMany(x => x)
                  .ToLookup(pair => pair.Key, pair => pair.Value)
                  .ToDictionary(g => g.Key, g => g.Last());
             }
